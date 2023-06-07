@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if information %}
+
+  {% set diff = ((prices.get('c') - prices.get('pc'))/prices.get('pc'))*100 %}
+    <div class="container" >
+      <div class="d-flex">
+        <img src="{{ information.get('logo') }}" alt="company logo" class="logo-image">
+        <div class="ml-2">
+          <h5>{{ information.get('name') }} - ( {{ information.get('ticker') }} )</h5>
+          <small>{{ information.get('exchange') }}</small>
+        </div>
+      </div>
+      <div class="d-flex mt-2">
+        <h3>$ {{ prices.get('c') }}</h3> <br>
+      </div>
+      <small {% if  diff <0 %} class="loss"{% else %} class="gain"{% endif %}>
+        {% if diff<0 %}
+            <i class="bi bi-arrow-down"></i>
+        {% else %}
+            <i class="bi bi-arrow-up"></i>
+        {% endif %}
+        {{ "%.3f"|format(diff|float) }}%
+      </small> 
+      
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Open price</th>
+            <th>Prev. Close</th>
+            <th>Today's high</th>
+            <th>Today's low</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ prices.get('o') }}</td>
+            <td>{{ prices.get('pc') }}</td>
+            <td>{{ prices.get('h') }}</td>
+            <td>{{ prices.get('l') }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col-sm-6 border-right">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th>52WeekHigh</th>
+                <td>{{ overview.get('52WeekHigh') }}</td>
+              </tr>
+              <tr>
+                <th>52WeekLow</th>
+                <td>{{ overview.get('52WeekLow') }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th>PERatio</th>
+                <td>{{ overview.get('PERatio') }}</td>
+              </tr>
+              <tr>
+                <th>EPS</th>
+                <td>{{ overview.get('EPS') }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <form class="form-row" method="post" action="/sell-check?id={{data['order_id']}}">
+        <div class="form-group col-md-3">
+          <label for="order_type" class="control-label">Order Type</label>
+        <select id="order_type" class="form-control" name="order_type" onchange="togglePriceInput()">
+          <option value="" disabled selected>Order type</option>
+          <option value="market_price">Market Price</option>
+          <option value="limit_price">Limit Price</option>
+        </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="quantity" class="control-label">Quantity</label>
+          <input type="number" value='' class="form-control" name="quantity" id="quantity" onchange="calculateTotal()" required >
+        </div>
+        <div class="form-group col-md-3">
+          <label for="price" class="control-label">Current Price</label>
+          <input type="number" class="form-control" value="{{ prices.get('c') }}" name="price" onchange="calculateTotal()" id="price" />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="amount" class="control-label">Total Amount</label>
+          <input type="number" value='' class="form-control" id="total" readonly>
+        </div>
+        <div class="form-group col-md-3">
+          <input type="submit" value="Sell" class="btn btn-primary rounded-pill ml-2" style="background-color: #142440; color: white;">
+        </div>
+      </form>
+
+
+    </div>
+
+    <script>
+    
+        function calculateTotal() 
+        {
+            var price = document.getElementById('price').value;
+            var quantity = document.getElementById('quantity').value;
+            var total = price * quantity;
+            document.getElementById('total').value = total;
+        }
+
+      </script>
+        
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container" style="display: flex;">
+      <div class="my-form">
+        <div class="form-title">
+          <h3>New Account?</h3>
+      </div>
+      <form method="post">
+        <div class="single-input">
+          <span><i class="fas fa-user"></i></span>
+          <input type="text" placeholder="Username" name="username">
+        </div>
+        <div class="single-input">
+            <span><i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+            <input type="text" placeholder="email" name="email">
+          </div>
+        <div class="single-input">
+          <span><i class="fas fa-unlock"></i></span>
+          <input type="password" placeholder="Password" name="password">
+        </div>
+        <div class="single-input">
+            <span><i class="fas fa-unlock"></i></span>
+            <input type="password" placeholder="Confirm Password" name="conpass">
+        </div>
+        account already exist ?&nbsp;<a href = "/login"><span style="color:#182444">Login</span></a>       
+        <div class="single-input submit-btn">
+          <input type="submit" value="Login">
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

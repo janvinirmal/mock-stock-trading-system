@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="display: flex;"> 
+    <div class="my-form">
+      <div class="form-title">
+      <h3>Change Password</h3>
+    </div>  
+    <form method="post" action="/changepass">
+      <div class="single-input">
+        <input type="password" placeholder="new password" name="newpass">
+      </div>
+      <div class="single-input">
+        <input type="password" placeholder="confirm new password " name="newpasscon">
+      </div>
+      <div class="single-input submit-btn">
+        <input type="submit" value="Go">
+      </div>
+    </form>
+  </div>`
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-2"style="background-color: #142440;">
+<marquee behavior="scroll" direction="left" class="my-marquee">
+    
+   {% for ticker in info %}
+  
+   {{ ticker }} {{ info[ticker]['c'] }}
+   <small {% if  info[ticker]['diff'] <0 %} class="loss mr-4"{% else %} class="gain mr-4"{% endif %}>
+    {% if info[ticker]['diff']<0 %}
+        <i class="bi bi-arrow-down"></i>
+    {% else %}
+        <i class="bi bi-arrow-up"></i>
+    {% endif %}
+    {{ "%.3f"|format(info[ticker]['diff']|float) }}%
+  </small>
+   {% endfor %}
+  </marquee>
+  </div>
+
+  <div class="container mt-5">
+    <div class="box">
+      <div class="row">
+        <div class="col-md-6 about-image">
+            <img src="../static/Images/logo.png" alt="About Image" class="img-fluid rounded">
+          </div>
+        <div class="col-md-6 about-section">
+          <div class="about-text">
+            <h2>InvestKaro - Mock Trading App</h2>
+            <p>InvestKaro is a cutting-edge online stock trading platform that empowers investors to trade stocks, ETFs, and other securities with ease and confidence. Our mission is to democratize investing by providing an intuitive and user-friendly platform that makes stock trading accessible to all types of investors, from beginners to experienced traders.</p>
+            <p>With investKaro, you can take control of your investment portfolio, monitor market trends, analyze stock performance, and make informed trading decisions. Our platform offers a wide range of tools and features, including real-time stock quotes, customizable watchlists, technical analysis tools, and comprehensive research resources to help you stay ahead of the market.</p>
+            <p>Whether you're a seasoned investor or just starting out, investKaro is your go-to platform for seamless and hassle-free stock trading. Join us today and experience the future of online investing!</p>
+         </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}

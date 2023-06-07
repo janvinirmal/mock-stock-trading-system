@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <style>
+      .error {
+  color: red;
+}
+    </style>
+  </head>
+  <title>
+
+  </title>
+
+
+  <body>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+      <span class="error" id="username-error"></span>
+    
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password">
+      <span class="error" id="password-error"></span>
+    
+      <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+      const form = document.querySelector('form');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const usernameError = document.getElementById('username-error');
+const passwordError = document.getElementById('password-error');
+
+// Validate the username input on input change
+usernameInput.addEventListener('input', function() {
+  if (usernameInput.value.length < 3) {
+    usernameError.textContent = 'Username must be at least 3 characters long';
+  } else {
+    usernameError.textContent = '';
+  }
+});
+
+// Validate the password input on input change
+passwordInput.addEventListener('input', function() {
+  if (passwordInput.value.length < 8) {
+    passwordError.textContent = 'Password must be at least 8 characters long';
+  } else {
+    passwordError.textContent = '';
+  }
+});
+
+// Validate the form on submit
+form.addEventListener('submit', function(event) {
+  if (usernameInput.value.length < 3) {
+    event.preventDefault();
+    usernameError.textContent = 'Username must be at least 3 characters long';
+  }
+  
+  if (passwordInput.value.length < 8) {
+    event.preventDefault();
+    passwordError.textContent = 'Password must be at least 8 characters long';
+  }
+});
+
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="history">
+    
+    {% if  rows %}
+    <table class="table table-hover table-striped custom-table mx-auto">
+   
+    </thead>
+    <tbody>
+        
+        {% for row in rows  %}         
+        <tr>
+            {% set id = row['order_id'] %}
+            {% if gain[id] < 0 %}
+                {% set loss = True %}
+            {% else %}
+                {% set loss = False %}
+            {% endif %}
+
+            <td class="symbol">
+                {{ row['company_name'] }}&nbsp;&nbsp;{{ row['trade_type']|upper }}<br>
+                <small>{{ row['ticker'] }}</small>
+            </td>
+            <td>
+                {{ row['order_time'] }}<br>
+                <small class ="{{ row['status'] }}">{{ row['status'] }}</small>
+            </td>
+            <td>
+                $ {{ row['price'] }}<br>
+                <small{% if loss %} class="loss"{% else %} class="gain"{% endif %}> 
+                    {% if loss %}
+                        <i class="bi bi-arrow-down"></i>
+                    {% else %}
+                        <i class="bi bi-arrow-up"></i>
+                    {% endif %}
+                    {{ "%.3f"|format(gain[id]|float) }}
+                </small>
+            </td>
+           <!--<td>
+                
+                {% if row['sold'] == 1 %}
+                <input class="btn btn-primary rounded-pill ml-2" style="background-color: #142440; color: white;" type="button" value="Sold" disabled>
+                {% else %}
+                <a class="btn btn-primary rounded-pill ml-2" role="button" style="background-color: #142440; color: white;" href="/sell?ticker={{ row['ticker'] }}&id={{row['order_id']}}">Sell</a>
+                {% endif %}
+                    
+            </td> -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+   
+{% else %}
+No history to show :(
+
+{% endif %}
+        
+
+</div>
+                    
+{% endblock %}

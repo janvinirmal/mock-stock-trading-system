@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="holding">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex flex-column align-items-center">
+                <h3 class="display-4 mb-0">${{ result['balance'] }}</h3>
+                <p class="small">Balance</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-column align-items-center">
+                <h3 class="display-4 mb-0">${{ result['gain'] }}</h3>
+                <p class="small">Gain</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex flex-column align-items-center">
+                <h3 class="display-4 mb-0">${{ total }}</h3>
+                <p class="small">Total Holding</p>
+            </div>
+        </div>
+    </div>
+
+
+{% if rows %}
+<table class="table table-hover table-striped custom-table mx-auto">
+    <thead>
+        <tr>
+            <th>Ticker</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    <tbody>
+        
+        {% for row in rows  %}         
+        <tr>
+            {% set id = row['order_id'] %}
+            {% if gain[id] < 0 %}
+                {% set loss = True %}
+            {% else %}
+                {% set loss = False %}
+            {% endif %}
+
+            <td class="symbol">
+                <small>{{ row['ticker'] }}</small>
+            </td>
+            <td>
+                {{ row['quantity'] }}<br>
+            </td>
+            <td>
+                $ {{ row['price'] }}<br>
+                <small{% if loss %} class="loss"{% else %} class="gain"{% endif %}> 
+                    {% if loss %}
+                        <i class="bi bi-arrow-down"></i>
+                    {% else %}
+                        <i class="bi bi-arrow-up"></i>
+                    {% endif %}
+                    {{ "%.3f"|format(gain[id]|float) }}
+                </small>
+            </td>
+           <td>
+                
+                {% if row['sold'] == 1 %}
+                <input class="btn btn-primary rounded-pill ml-2" style="background-color: #142440; color: white;" type="button" value="Sold" disabled>
+                {% else %}
+                <a class="btn btn-primary rounded-pill ml-2" role="button" style="background-color: #142440; color: white;" href="/sell?ticker={{ row['ticker'] }}&id={{row['order_id']}}">Sell</a>
+                {% endif %}
+                    
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+
+    No current holdings!
+{% endif %}
+    
+
+</div>
+                    
+{% endblock %}

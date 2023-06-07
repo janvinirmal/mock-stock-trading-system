@@ -1,0 +1,183 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    color:#142440;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .container{
+    position: relative;
+    margin-top: 25px;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .my-form{
+    background: #fff;
+    padding: 30px 50px;
+    border-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    border-style: solid;
+  }
+  .form-title{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .form-title h1{
+    margin: 0px;
+    color: #142440;
+  }
+  .single-input{
+    width: 270px;
+    border:0px;
+    display: flex;
+    margin-bottom: 15px;
+  }
+  .single-input i{
+    padding: 8px 16px;
+    color: #142440;
+  }
+  .single-input input{
+    border: 0px;
+    border-bottom: 1px solid #e6e6e6;
+    width: 100%;
+    outline: none;
+    height: 30px;
+    font-size: 14px;
+  }
+  .single-input input:focus 
+  {
+    border-bottom: 1px solid #182b4c; 
+  }
+
+  .submit-btn{
+     border:0px solid #c1c1c1;
+     margin-top: 30px;
+    
+  }
+  .submit-btn input{
+     background: #142440;
+     width: 100%;
+     height: 40px;
+     color: #fff;
+     cursor: pointer; 
+  }
+  .submit-btn input:hover
+  {
+    background-color:#e34747;
+  }
+
+ /*base.html*/
+  .dropdown-item:hover {
+    background-color: #142440;
+    color: white;
+  }
+  /**/
+  .symbol {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .gain {
+    font-weight: bold;
+    color: green;
+  }
+
+  .loss {
+    font-weight: bold;
+    color: red;
+  }
+  .success
+  {
+    color:green
+  }
+  .pending
+  {
+    color:rgb(255, 140, 0)
+  }
+  .history {
+    padding: 20px;
+    /*border: 2px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-top: none;
+    border-bottom: none;*/
+    margin: 20px auto;
+    width: 60%;
+    max-height: 580px;
+		overflow-y: scroll;
+  }
+  .custom-table
+  {
+    padding:0;
+  }
+
+  /* home */
+  .my-marquee {
+    background-color: #142440; /* Set the background color to #142440 */
+    color: white; /* Set the text color to white */
+    padding: 10px; /* Add padding for better visibility */
+    overflow: hidden; /* Hide the overflow to control the length of the marquee */
+    position: relative; /* Set the position property to enable positioning of the marquee */
+    margin: 0 auto; /* Set the margin property to auto to center the marquee horizontally */
+
+  }
+
+  .my-marquee marquee {
+    display: flex; /* Use flexbox to center the text vertically */
+    align-items: center; /* Center the text vertically */
+    justify-content: center; /* Center the text horizontally */
+    animation: marquee 5s linear infinite;  
+  }
+  .box {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    overflow: hidden; /* Hide overflowing content */
+    box-shadow: 0px 4px 10px rgba(14, 13, 13, 0.1);
+  }
+  
+  .about-section {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+  }
+  
+  .about-text {
+    flex: 1;
+    color:#142440;
+  }
+  
+  .about-image {
+    flex: 1;
+    border-radius: 20px; 
+  }
+  
+  .profile-box
+  {
+    position: relative;
+    box-shadow: 4px 4px 4px 4px rgba(57, 57, 57, 0.2);
+    border-radius: 10px;
+    margin: 50px auto;
+    width:fit-content;
+    padding: 5px;
+    border:#fff solid;
+  }
+
+  .holding {
+    padding: 20px;
+    margin: 20px auto;
+    max-height: 580px;
+		overflow-y: scroll;
+    width: 60%;
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .custom {
+      height: 130px;
+      flex-direction: column;
+    }
+  }
+  
